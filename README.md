@@ -32,4 +32,4 @@ Traffic enters via **ALB (Port 80)**, which routes to a **Target Group (Port 800
 [http://django-alb-1447102134.ap-south-1.elb.amazonaws.com](http://django-alb-1447102134.ap-south-1.elb.amazonaws.com)
 
 ---
-**Developed by Seethalakshmi**
+
