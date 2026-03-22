@@ -1,6 +1,6 @@
-# Django Deployment on AWS ECS Fargate
+# Django on AWS ECS Fargate
 
-A containerized Django application deployed using a serverless architecture on Amazon Web Services (AWS). This project demonstrates the integration of Docker, Amazon ECR, and ECS Fargate with an Application Load Balancer.
+A serverless, containerized Django deployment using AWS ECS Fargate and an Application Load Balancer (ALB).
 
 ## Technical Stack
 * **Web Framework:** Django (Python)
@@ -11,18 +11,25 @@ A containerized Django application deployed using a serverless architecture on A
 * **Orchestration:** Amazon ECS (Fargate Launch Type)
 * **Networking:** Application Load Balancer (ALB), VPC, Security Groups
 
-## Architecture Overview
-The application is packaged as a Docker image and hosted in a private Amazon ECR repository. Traffic is managed by an Internet-facing Application Load Balancer (Port 80), which routes requests to a Target Group (Port 8000) associated with a Fargate Service.
+## Architecture
+Traffic enters via **ALB (Port 80)**, which routes to a **Target Group (Port 8000)**. The application runs as a serverless container within an **ECS Cluster** using the **Fargate** launch type.
 
-## Key Implementation Steps
-1. **Containerization:** Developed a Dockerfile to package the Django environment and Gunicorn server.
-2. **Registry Management:** Authenticated and pushed the versioned image to Amazon ECR.
-3. **Infrastructure Setup:** Provisioned a Target Group and an Application Load Balancer for high availability.
-4. **Task Definition:** Configured an ECS Task Definition specifying CPU/Memory requirements and Port 8000 mappings.
-5. **Service Deployment:** Launched an ECS Service using the Fargate launch type with automated public IP assignment.
+## Deployment Validation
 
-## Live Application
-The project is accessible via the ALB DNS:
-http://django-alb-1447102134.ap-south-1.elb.amazonaws.com
+### 1. Target Group Health Status
+![Target Group Healthy Status](healthy_status.png)
+
+### 2. Live Application
+![Live Application](live_app.png)
+
+## Implementation Steps
+1. **Dockerization:** Created Dockerfile for Django/Gunicorn.
+2. **Registry:** Managed images via Amazon ECR.
+3. **Traffic:** Provisioned ALB and Target Group health checks.
+4. **Orchestration:** Configured ECS Task Definitions and Fargate Service.
+
+## Live Link
+[http://django-alb-1447102134.ap-south-1.elb.amazonaws.com](http://django-alb-1447102134.ap-south-1.elb.amazonaws.com)
 
 ---
+**Developed by Seethalakshmi**
